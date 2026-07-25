@@ -118,27 +118,19 @@ The AI assistant is instructed to behave as a cybersecurity expert.
 
 ## Home Page
 
-_Add Screenshot Here_
-
----
+![Home Page](screenshots/home.png)
 
 ## AI Scam Analysis
 
-_Add Screenshot Here_
-
----
-
-## Quiz Section
-
-_Add Screenshot Here_
-
----
+![AI Scam Analysis](screenshots/analysis.png)
 
 ## Analysis Result
 
-_Add Screenshot Here_
+![Analysis Result](screenshots/result.png)
 
----
+## Quiz Section
+
+![Quiz Section](screenshots/quiz.png)
 
 # ⚙️ How to Run the Project
 
