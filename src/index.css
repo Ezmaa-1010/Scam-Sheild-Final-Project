@@ -1,0 +1,278 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark-first cybersecurity theme. Light tokens kept for completeness. */
+    --background: 240 10% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 4% 14%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 221 83% 53%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 9%;
+
+    --border: 240 6% 16%;
+    --input: 240 6% 18%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.85rem;
+
+    --chart-1: 221 83% 53%;
+    --chart-2: 160 84% 39%;
+    --chart-3: 0 84% 60%;
+    --chart-4: 38 92% 50%;
+    --chart-5: 280 65% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background-color: hsl(var(--primary) / 0.3);
+    color: hsl(var(--foreground));
+  }
+
+  /* Refined scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border-radius: 999px;
+    border: 2px solid hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+}
+
+@layer components {
+  /* Glassmorphism card surface */
+  .glass {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--card) / 0.7),
+      hsl(var(--card) / 0.4)
+    );
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid hsl(var(--border) / 0.7);
+  }
+
+  .glass-strong {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--card) / 0.85),
+      hsl(var(--card) / 0.55)
+    );
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid hsl(var(--border));
+  }
+
+  /* Subtle grid + radial glow background used on hero / dashboard */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.4) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.4) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .bg-radial-glow {
+    background:
+      radial-gradient(
+        ellipse 80% 60% at 50% 0%,
+        hsl(var(--primary) / 0.18),
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 50% 40% at 100% 100%,
+        hsl(var(--chart-3) / 0.08),
+        transparent 70%
+      );
+  }
+
+  .text-gradient-primary {
+    background: linear-gradient(120deg, #60a5fa, #2563eb 60%, #1d4ed8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-danger {
+    background: linear-gradient(120deg, #fb7185, #ef4444 60%, #b91c1c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .shadow-glow-primary {
+    box-shadow:
+      0 0 0 1px hsl(var(--primary) / 0.25),
+      0 8px 32px -8px hsl(var(--primary) / 0.55);
+  }
+  .shadow-glow-danger {
+    box-shadow:
+      0 0 0 1px hsl(var(--destructive) / 0.25),
+      0 8px 32px -8px hsl(var(--destructive) / 0.55);
+  }
+  .shadow-glow-success {
+    box-shadow:
+      0 0 0 1px hsl(var(--success) / 0.25),
+      0 8px 32px -8px hsl(var(--success) / 0.5);
+  }
+  .shadow-glow-warning {
+    box-shadow:
+      0 0 0 1px hsl(var(--warning) / 0.25),
+      0 8px 32px -8px hsl(var(--warning) / 0.5);
+  }
+
+  .shadow-soft {
+    box-shadow:
+      0 1px 2px hsl(0 0% 0% / 0.3),
+      0 8px 24px -12px hsl(0 0% 0% / 0.6);
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: ss-float 6s ease-in-out infinite;
+  }
+  .animate-pulse-slow {
+    animation: ss-pulse-slow 3s ease-in-out infinite;
+  }
+  .animate-fade-in-up {
+    animation: ss-fade-in-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .animate-scan-line {
+    animation: ss-scan-line 2.4s ease-in-out infinite;
+  }
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--muted-foreground) / 0.2) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 200% 100%;
+    animation: ss-shimmer 1.6s linear infinite;
+  }
+}
+
+@keyframes ss-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes ss-pulse-slow {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes ss-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ss-scan-line {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10%,
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes ss-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
