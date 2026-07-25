@@ -1,216 +1,248 @@
-# ScamShield AI — Intelligent Scam &amp; Phishing Detection Assistant
+# 🛡️ ScamShield AI
 
-ScamShield AI is a production-ready, AI-powered cybersecurity web app that helps everyday internet users identify scams and phishing messages. Paste a suspicious email, SMS, WhatsApp message, social media DM, or bank alert, and get an instant risk score, scam category, a plain-English explanation of what the scammer is really after, and a clear safety plan.
+> **An AI-powered cybersecurity assistant that helps users detect phishing emails and scam SMS messages before they become victims.**
 
-> The app doesn't just say "phishing." It explains **why** a message is dangerous, in language anyone can understand.
+## 📌 About the Project
+
+**ScamShield AI** is an intelligent web application designed to protect people from online scams, phishing emails, and fraudulent SMS messages. Cybercriminals frequently send fake messages pretending to be banks, delivery companies, government organizations, or popular websites to steal personal information.
+
+ScamShield AI allows users to paste suspicious emails or SMS messages into the app. The AI analyzes the content, explains why it may be dangerous, highlights red flags, estimates the risk level, and provides safety recommendations.
+
+In addition, the application includes an interactive cybersecurity quiz that helps users improve their awareness and learn how to recognize phishing attacks.
+
+### 🎯 Real Problem It Solves
+
+Millions of people receive scam emails and SMS messages every day but often cannot identify whether they are genuine or fraudulent. Many users, especially students, elderly people, and those with limited cybersecurity knowledge, become victims of phishing attacks.
+
+ScamShield AI provides instant AI-powered analysis and educational guidance, helping users make safer online decisions before clicking suspicious links or sharing sensitive information.
+
+### 👥 Target Audience
+
+- General internet users
+- Students
+- Elderly users
+- Employees
+- Small businesses
+- Anyone concerned about online safety
 
 ---
 
-## Problem Statement
+# 🚀 Live Demo
 
-Millions of people receive phishing emails, fake bank messages, WhatsApp scams, fake prize/delivery messages, OTP scams, crypto/investment/romance/job scams, and fake customer-support messages every day. Most users cannot distinguish a genuine message from a convincing fake. ScamShield AI acts as a personal cybersecurity assistant that explains the danger and tells you exactly what to do.
+### 🌐 Deployed Application
 
-## Target Users
+https://scam-sheild-final-project.vercel.app/
 
-- Everyday internet users who aren't security experts
-- Older relatives who are frequent scam targets
-- Students and young professionals learning cyber awareness
-- Anyone who receives a suspicious message and wants a second opinion before acting
+---
 
-## Features
+# ✨ Features
 
-- **AI Risk Analysis** — Google Gemini inspects every message for urgency, spoofing, credential harvesting, OTP requests, impersonation, and manipulation tactics.
-- **Dynamic Risk Meter** — A 0–100 animated gauge with a Safe / Suspicious / Dangerous verdict that changes color dynamically.
-- **Scam Category** — Bank Phishing, Prize Scam, Investment Scam, Delivery Scam, OTP Scam, Tech Support Scam, Romance Scam, Crypto Scam, and more.
-- **Red Flags Checklist** — A clear list of every warning sign detected.
-- **Psychological Tricks** — Badges for Fear, Greed, Urgency, Authority, Scarcity, Curiosity, and more.
-- **What To Do** — Concrete, prioritized safety actions.
-- **Safe Rewrite** — The AI rewrites the scam into plain English explaining what it's really trying to do.
-- **Copy, Download (PDF), Share, and Clear** — Export or share any analysis.
-- **Scan History** — Every scan is saved in your browser (localStorage), searchable and deletable.
-- **Learn Page** — Educational deep-dives on 11 scam types with examples and safety tips.
-- **Interactive Quiz** — 10 questions with explanations, a progress bar, and a downloadable **Cyber Safety Beginner** certificate (score 7+ to pass).
-- **Responsive** — Works beautifully on desktop, tablet, and mobile.
-- **Accessible** — Keyboard navigation, ARIA labels, reduced-motion support, and visible focus states.
+- 🔍 AI-powered phishing email analysis
+- 📱 AI-powered scam SMS detection
+- ⚠️ Identifies suspicious links and phishing indicators
+- 📊 Provides scam risk level (Low / Medium / High)
+- 💡 Explains why a message is suspicious
+- ✅ Gives safety recommendations
+- 🧠 Interactive cybersecurity learning quiz
+- 📚 Helps users learn phishing awareness
+- 🎨 Modern responsive user interface
+- ⚡ Fast real-time AI responses
+- 🌍 Accessible from any modern web browser
 
-## AI Functionality
+---
 
-When the user clicks **Analyze**, the message is:
+# 🤖 AI Feature
 
-1. **Sanitized** — control characters and excessive whitespace are stripped, and length is capped at 5,000 characters.
-2. **Guarded against prompt injection** — the message is wrapped inside clear delimiters (`===== BEGIN UNTRUSTED MESSAGE =====`) and the model is instructed to treat it strictly as data, never as instructions.
-3. **Sent to a secure Supabase Edge Function** — the Gemini API key lives only on the server and is **never** exposed to the browser.
-4. **Analyzed by Google Gemini** with a cybersecurity system prompt, returning **strict JSON** matching this schema:
+The core feature of ScamShield AI is its intelligent phishing detection assistant.
 
-```json
-{
-  "riskLevel": "Safe | Suspicious | Dangerous",
-  "riskScore": 0-100,
-  "summary": "",
-  "explanation": "",
-  "redFlags": [],
-  "recommendedActions": [],
-  "messageType": "",
-  "scamCategory": "",
-  "psychologicalTactics": [],
-  "confidence": "",
-  "rewrite": "",
-  "shouldReport": true,
-  "shouldBlockSender": true
-}
-```
+Users simply paste an email or SMS message into the application.
 
-5. **Validated and normalized** — the edge function clamps the score to 0–100, coerces the risk level to one of the three allowed values, and ensures array fields are always arrays before returning to the client.
+The AI analyzes:
 
-The AI **never** returns markdown — only JSON.
+- suspicious language
+- urgency tactics
+- fake rewards
+- phishing links
+- impersonation attempts
+- requests for sensitive information
+- common scam patterns
 
-## Technologies Used
+After analysis, the AI returns:
 
-| Layer        | Tech                                                    |
-| ------------ | ------------------------------------------------------- |
-| Framework    | React 18 + TypeScript                                   |
-| Build tool   | Vite                                                    |
-| Styling      | Tailwind CSS + shadcn/ui                                |
-| Animations   | Framer Motion                                           |
-| Icons        | Lucide React                                            |
-| Backend      | Supabase (Edge Functions)                               |
-| AI           | Google Gemini 1.5 Flash                                 |
-| PDF reports  | jsPDF                                                   |
-| Hosting      | Vercel-ready static build                               |
+- Risk level
+- Detailed explanation
+- Detected red flags
+- Safety advice
+- Recommended next steps
 
-## Installation
+---
 
-```bash
-# 1. Clone the repository
-git clone <your-repo-url>
-cd scamshield-ai
+# 🧠 AI System Prompt
 
-# 2. Install dependencies
-npm install
+The AI assistant is instructed to behave as a cybersecurity expert.
 
-# 3. Run the dev server
-npm run dev
+### System Prompt
 
-# 4. Build for production
-npm run build
+> You are ScamShield AI, an expert cybersecurity assistant specializing in phishing detection and scam awareness. Analyze the provided email or SMS carefully. Identify phishing indicators, suspicious links, urgency tactics, impersonation attempts, requests for sensitive information, grammatical issues, and scam patterns. Assign an overall risk level (Low, Medium, or High), explain your reasoning in simple language, highlight all detected red flags, and provide practical safety recommendations. Always educate the user without causing unnecessary panic. Never invent information, and clearly state when something cannot be confirmed.
 
-# 5. Preview the production build
-npm run preview
-```
+---
 
-## Environment Variables
+# 🛠 Technologies Used
 
-The client app uses Supabase credentials that are provisioned automatically. Copy `.env.example` to `.env` and fill in your values if running outside the Bolt environment:
+## Frontend
 
-```
-VITE_SUPABASE_URL=your-supabase-project-url
-VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
-```
+- React
+- TypeScript
+- Tailwind CSS
+- Vite
 
-The **Gemini API key is NOT a client env var.** It is set as a Supabase Edge Function secret named `GEMINI_API_KEY` (and optionally `GEMINI_MODEL`, defaulting to `gemini-1.5-flash`). Configure it via your Supabase dashboard under **Edge Functions → Secrets**, or via the Supabase MCP tools.
+## Backend
+
+- Supabase
+
+## AI
+
+- OpenAI API
 
 ## Deployment
 
-### Vercel
+- Vercel
 
-1. Push the repo to GitHub.
-2. Import the project in Vercel.
-3. Add the environment variables (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`) in **Project Settings → Environment Variables**.
-4. Set the Edge Function secret `GEMINI_API_KEY` in your Supabase project.
-5. Deploy. Vercel runs `npm run build` and serves the static `dist/` output.
+## Version Control
 
-The `analyze` Edge Function is already deployed to Supabase; no additional server infrastructure is needed.
-
-## Screenshots
-
-> Add the following screenshots to your repo's `docs/` folder and reference them here:
-
-- `docs/landing.png` — Landing page hero
-- `docs/dashboard.png` — Message analyzer
-- `docs/result-dangerous.png` — Dangerous risk result
-- `docs/result-safe.png` — Safe risk result
-- `docs/history.png` — Scan history
-- `docs/learn.png` — Learn page
-- `docs/quiz.png` — Cyber safety quiz
-- `docs/certificate.png` — Completion certificate
-
-## Folder Structure
-
-```
-src/
-├── components/
-│   ├── ui/                 # shadcn/ui primitives
-│   ├── Analyzer.tsx        # Input form + result orchestration
-│   ├── ActionToolbar.tsx   # Copy / Download / Share / Clear
-│   ├── AdviceCard.tsx      # "What To Do" checklist
-│   ├── ErrorBoundary.tsx
-│   ├── Footer.tsx
-│   ├── HistoryCard.tsx
-│   ├── Loading.tsx
-│   ├── Navbar.tsx
-│   ├── PageHeader.tsx
-│   ├── RedFlagsCard.tsx
-│   ├── ResultCard.tsx      # Risk meter + summary + explanation
-│   ├── RewriteCard.tsx
-│   ├── RiskMeter.tsx       # Animated circular gauge
-│   ├── TacticsCard.tsx     # Psychological tricks badges
-│   └── ThemeProvider.tsx
-├── hooks/
-│   ├── useAnalyzer.ts
-│   ├── useHashRoute.ts
-│   ├── useHistory.ts
-│   ├── useTheme.ts
-│   └── use-toast.ts
-├── pages/
-│   ├── About.tsx
-│   ├── Dashboard.tsx
-│   ├── History.tsx
-│   ├── Landing.tsx
-│   ├── Learn.tsx
-│   └── Quiz.tsx
-├── services/
-│   └── analyze.ts          # Calls the edge function
-├── types/
-│   └── index.ts            # AnalysisResult schema
-├── utils/
-│   ├── learnContent.ts
-│   ├── quizContent.ts
-│   ├── report.ts           # PDF + clipboard + share
-│   ├── risk.ts
-│   ├── sanitize.ts         # Sanitize + prompt-injection guard
-│   └── storage.ts          # localStorage history/theme
-├── App.tsx
-├── main.tsx
-├── index.css
-└── App.css
-supabase/
-└── functions/
-    └── analyze/
-        └── index.ts        # Gemini proxy (server-side key)
-```
-
-## Security
-
-- The Gemini API key is **never** shipped to the browser — it lives only in the Supabase Edge Function.
-- User input is sanitized and capped at 5,000 characters.
-- User content is wrapped in delimiters before being sent to the model to resist prompt injection.
-- The AI is explicitly instructed to treat the message as untrusted data and to ignore any embedded instructions.
-- Scan history is stored locally in the browser, never on the server.
-- Messages are analyzed and discarded — they are not persisted.
-
-## Future Improvements
-
-- Browser extension for one-click analysis of emails and DMs in-context
-- Image/URL-only analysis (OCR + link reputation)
-- Multi-language support
-- Community-reported scam signature database
-- Per-account cloud history with optional sign-in
-- SMS forwarding number for direct message analysis
-
-## License
-
-Released under the **MIT License**. See `LICENSE` for details.
+- GitHub
 
 ---
 
-Built for a safer internet. Made with AI.
+# 📸 Screenshots
+
+## Home Page
+
+_Add Screenshot Here_
+
+---
+
+## AI Scam Analysis
+
+_Add Screenshot Here_
+
+---
+
+## Quiz Section
+
+_Add Screenshot Here_
+
+---
+
+## Analysis Result
+
+_Add Screenshot Here_
+
+---
+
+# ⚙️ How to Run the Project
+
+## Clone the Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+```
+
+## Go to the Project Folder
+
+```bash
+cd YOUR_REPOSITORY
+```
+
+## Install Dependencies
+
+```bash
+npm install
+```
+
+## Configure Environment Variables
+
+Create a `.env` file in the root directory.
+
+```env
+VITE_SUPABASE_URL=your_supabase_url
+
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+VITE_OPENAI_API_KEY=your_openai_api_key
+```
+
+> **Note:** Never commit API keys or secrets to GitHub.
+
+## Start Development Server
+
+```bash
+npm run dev
+```
+
+The application will be available at:
+
+```
+http://localhost:5173
+```
+
+---
+
+# 📂 Project Structure
+
+```
+ScamShield-AI/
+│
+├── public/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── services/
+│   ├── hooks/
+│   ├── utils/
+│   └── assets/
+│
+├── .env
+├── package.json
+├── vite.config.ts
+└── README.md
+```
+
+---
+
+# 💡 Future Improvements
+
+- Image-based phishing detection
+- QR code scam analysis
+- Browser extension
+- Multi-language support
+- Voice scam detection
+- User history dashboard
+- Dark mode
+- More cybersecurity quizzes
+
+---
+
+# 🔒 Security
+
+Sensitive credentials such as API keys are stored securely using environment variables and are **not** included in the GitHub repository.
+
+---
+
+# 👨‍💻 Author
+
+Developed by **Ezma** as the Final Project for the AI App Development course.
+
+---
+
+# 📜 License
+
+This project is created for educational purposes as a final course submission.
+
+---
+
+## ⭐ Thank You
+
+Thank you for exploring **ScamShield AI**.
+
+Stay informed. Stay alert. Stay protected.
